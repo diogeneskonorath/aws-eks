@@ -1,9 +1,9 @@
 resource "aws_eks_cluster" "cluster" {
-  name     = "dev-cluster"
+  name     = var.cluster_name
   role_arn = aws_iam_role.dev_cluster.arn
 
   vpc_config {
-    subnet_ids = [aws_subnet.example1.id, aws_subnet.example2.id]
+    subnet_ids = [var.public_subnet1, var.public_subnet2, var.private_subnet1, var.private_subnet2]
   }
 
   depends_on = [
